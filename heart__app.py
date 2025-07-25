@@ -48,5 +48,3 @@ model.save('heart_mlp_model.h5')
 # STEP 10: save the scaler
 joblib.dump(scaler, 'scaler.pkl')
 
-# STEP 11: (optional) if you’re running locally and want to download manually, you can just grab:
-# heart_mlp_model.h5 and scaler.pkl from your project folder.
