@@ -42,9 +42,6 @@ history = model.fit(X_train_scaled, Y_train, epochs=50, batch_size=16, validatio
 loss, acc = model.evaluate(X_test_scaled, Y_test)
 print("Test accuracy:", acc)
 
-# STEP 9: save the model
-model.save('heart_mlp_model.h5')
 
-# STEP 10: save the scaler
-joblib.dump(scaler, 'scaler.pkl')
+
 
