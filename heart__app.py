@@ -57,6 +57,5 @@ model.save('heart_mlp_model.h5')
 joblib.dump(scaler, 'scaler.pkl')
 
 # STEP 11: download model and scaler
-from google.colab import files
 files.download('heart_mlp_model.h5')
 files.download('scaler.pkl')
