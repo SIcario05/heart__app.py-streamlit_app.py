@@ -12,19 +12,19 @@ import joblib
 # load dataset
 df = pd.read_csv('./heart_failure_clinical_records_dataset.csv')
 
-# STEP 3: split X and Y
+# split X and Y
 X = df.drop('DEATH_EVENT', axis=1)
 Y = df['DEATH_EVENT']
 
-# STEP 4: train-test split
+# train-test split
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
 
-# STEP 5: scale features
+# scale features
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
-# STEP 6: define MLP model
+# define MLP model
 model = Sequential([
     Dense(32, activation='relu', input_shape=(X_train_scaled.shape[1],)),
     Dense(16, activation='relu'),
@@ -35,13 +35,13 @@ model.compile(optimizer='adam',
               loss='binary_crossentropy',
               metrics=['accuracy'])
 
-# STEP 7: train the model
+# train the model
 history = model.fit(X_train_scaled, Y_train, epochs=50, batch_size=16, validation_split=0.2)
 
-# STEP 8: evaluate
+# evaluate
 loss, acc = model.evaluate(X_test_scaled, Y_test)
 print("Test accuracy:", acc)
 
-
-
-
+# optionally save model and scaler
+model.save('heart_mlp_model.h5')
+joblib.dump(scaler, 'scaler.pkl')
